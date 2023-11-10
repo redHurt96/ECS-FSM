@@ -1,16 +1,16 @@
-using _EcsFsm.Components;
 using _EcsFsm.Components.Core;
 using Leopotam.EcsLite;
-using UnityEngine;
+using static UnityEngine.Time;
+using static UnityEngine.Vector3;
 
-namespace _EcsFsm.Systems
+namespace _EcsFsm.Systems.Core
 {
-    public sealed class ReachTargetSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class MoveSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsFilter _filter;
         private EcsPool<Position> _positions;
         private EcsPool<MoveTarget> _moveTargets;
-        private EcsPool<ReachTargetDistance> _reachTargetDistances;
+        private EcsPool<Speed> _speeds;
 
         public void Init(IEcsSystems systems)
         {
@@ -19,24 +19,24 @@ namespace _EcsFsm.Systems
             _filter = world
                 .Filter<Position>()
                 .Inc<MoveTarget>()
-                .Inc<ReachTargetDistance>()
                 .End();
 
             _positions = world.GetPool<Position>();
             _moveTargets = world.GetPool<MoveTarget>();
-            _reachTargetDistances = world.GetPool<ReachTargetDistance>();
+            _speeds = world.GetPool<Speed>();
         }
 
         public void Run(IEcsSystems systems)
         {
+            float time = deltaTime;
+            
             foreach (int entity in _filter)
             {
-                ref Position position = ref _positions.Get(entity);
+                ref Position positionHook = ref _positions.Get(entity);
                 ref MoveTarget target = ref _moveTargets.Get(entity);
-                ref ReachTargetDistance distance = ref _reachTargetDistances.Get(entity);
+                ref Speed speed = ref _speeds.Get(entity);
 
-                if (Vector3.Distance(position.Value, target.Position) <= distance.Value)
-                    _moveTargets.Del(entity);
+                positionHook.Value = MoveTowards(positionHook.Value, target.Position, speed.Value * time);
             }
         }
     }
