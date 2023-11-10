@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _EcsFsm.Systems.Core
 {
-    public sealed class ReachTargetSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class ReachMoveTarget : IEcsInitSystem, IEcsRunSystem
     {
         private EcsFilter _filter;
         private EcsPool<Position> _positions;

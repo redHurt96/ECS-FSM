@@ -1,4 +1,6 @@
+using _EcsFsm.Systems.AI;
 using _EcsFsm.Systems.Core;
+using _EcsFsm.Systems.Movement;
 using _EcsFsm.Systems.View;
 using AB_Utility.FromSceneToEntityConverter;
 using Leopotam.EcsLite;
@@ -17,12 +19,17 @@ namespace _EcsFsm
             _systems = new(_world, new GameServices());
 
             _systems
-                //Core
-                .Add(new MoveSystem())
-                .Add(new ReachTargetSystem())
+                //Movement
+                .Add(new Move())
+                .Add(new ReachMoveTarget())
+                
+                //AI
+                .Add(new SelectEnemy())
+                .Add(new UpdateEnemyPosition())
+                .Add(new Attack())
                 
                 //View
-                .Add(new CreateViewSystem())
+                .Add(new CreateView())
 #if UNITY_EDITOR
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
                 .Add(new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem())

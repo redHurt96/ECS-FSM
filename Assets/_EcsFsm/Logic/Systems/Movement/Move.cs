@@ -3,9 +3,9 @@ using Leopotam.EcsLite;
 using static UnityEngine.Time;
 using static UnityEngine.Vector3;
 
-namespace _EcsFsm.Systems.Core
+namespace _EcsFsm.Systems.Movement
 {
-    public sealed class MoveSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class Move : IEcsInitSystem, IEcsRunSystem
     {
         private EcsFilter _filter;
         private EcsPool<Position> _positions;

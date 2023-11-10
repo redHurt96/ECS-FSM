@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace _EcsFsm.Systems.View
 {
-    public sealed class CreateViewSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class CreateView : IEcsInitSystem, IEcsRunSystem
     {
         private EcsFilter _filter;
         private EcsPool<HasView> _viewsPool;
