@@ -1,47 +1,36 @@
 using _EcsFsm.Systems.AI;
-using _EcsFsm.Systems.Core;
 using _EcsFsm.Systems.Movement;
-using _EcsFsm.Systems.View;
-using AB_Utility.FromSceneToEntityConverter;
-using Leopotam.EcsLite;
+using Scellecs.Morpeh;
 using UnityEngine;
+using static Scellecs.Morpeh.World;
+using static UnityEngine.Time;
 
 namespace _EcsFsm
 {
     public class EntryPoint : MonoBehaviour
     {
-        private EcsSystems _systems;
-        private EcsWorld _world;
+        private SystemsGroup _systems;
+        private World _world;
 
         private void Start()
         {
-            _world = new();
-            _systems = new(_world, new GameServices());
+            _world = Create();
+            _systems = _world.CreateSystemsGroup();
 
-            _systems
-                //Movement
-                .Add(new Move())
-                .Add(new ReachMoveTarget())
+            //Movement
+            _systems.AddSystem(new Move());
+            _systems.AddSystem(new ReachMoveTarget());
                 
-                //AI
-                .Add(new SelectEnemy())
-                .Add(new UpdateEnemyPosition())
-                .Add(new Attack())
-                
-                //View
-                .Add(new CreateView())
-#if UNITY_EDITOR
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
-                .Add(new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem())
-#endif
-                .ConvertScene()
-                .Init();
+            //AI
+            _systems.AddSystem(new SelectEnemy());
+            _systems.AddSystem(new UpdateEnemyPosition());
+            _systems.AddSystem(new Attack());
         }
 
         private void Update() => 
-            _systems.Run();
+            _world.Update(deltaTime);
 
         private void OnDestroy() => 
-            _systems.Destroy();
+            _world.Dispose();
     }
 }

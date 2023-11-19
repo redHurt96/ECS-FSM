@@ -1,25 +1,34 @@
 {
   "dependencies": {
-    "com.anbi.leoecslite.entityconverter": {
-      "version": "https://github.com/AndreyBirchenko/LeoEcsLiteEntityConverter.git",
+    "com.codewriter.triinspector": {
+      "version": "https://github.com/codewriter-packages/Tri-Inspector.git",
       "depth": 0,
       "source": "git",
-      "dependencies": {},
-      "hash": "99f0afcfbd925a0a833c7db8e06bd2aab4e0577f"
+      "dependencies": {
+        "com.unity.localization": "1.0.0"
+      },
+      "hash": "86fed7a83099b9d8f5b9f82b5c146873023a6e5c"
     },
-    "com.leopotam.ecslite": {
-      "version": "https://github.com/Leopotam/ecslite.git",
+    "com.scellecs.morpeh": {
+      "version": "https://github.com/scellecs/morpeh.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8e714f2caf4450757637f1d31001d0961f66288d"
+      "hash": "edf25dbb28e3cf303b77f14f636e0d3778c46971"
     },
-    "com.leopotam.ecslite.unityeditor": {
-      "version": "https://github.com/Leopotam/ecslite-unityeditor.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "480dbdfd0d73591f93ca010ea1a52bfa8e4cc06e"
+    "com.unity.addressables": {
+      "version": "1.21.15",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.21.8",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
       "version": "2.0.7",
@@ -81,9 +90,33 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.localization": {
+      "version": "1.4.4",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.addressables": "1.21.8",
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",
       "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.21.8",
+      "depth": 3,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

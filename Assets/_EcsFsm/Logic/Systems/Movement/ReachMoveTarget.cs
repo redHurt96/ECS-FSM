@@ -1,42 +1,39 @@
-using _EcsFsm.Components.Core;
-using Leopotam.EcsLite;
+using _EcsFsm.Components.Movement;
+using Scellecs.Morpeh;
+using Scellecs.Morpeh.Systems;
+using Unity.IL2CPP.CompilerServices;
 using UnityEngine;
 
-namespace _EcsFsm.Systems.Core
+namespace _EcsFsm.Systems.Movement
 {
-    public sealed class ReachMoveTarget : IEcsInitSystem, IEcsRunSystem
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
+    [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(ReachMoveTarget))]
+    public sealed class ReachMoveTarget : UpdateSystem
     {
-        private EcsFilter _filter;
-        private EcsPool<Position> _positions;
-        private EcsPool<MoveTarget> _moveTargets;
-        private EcsPool<ReachTargetDistance> _reachTargetDistances;
+        private Filter _filter;
 
-        public void Init(IEcsSystems systems)
+        public override void OnAwake() =>
+            _filter = World.Filter
+                .With<Position>()
+                .With<MoveTarget>()
+                .With<ReachTargetDistance>()
+                .Build();
+
+        public override void OnUpdate(float deltaTime)
         {
-            EcsWorld world = systems.GetWorld();
-
-            _filter = world
-                .Filter<Position>()
-                .Inc<MoveTarget>()
-                .Inc<ReachTargetDistance>()
-                .End();
-
-            _positions = world.GetPool<Position>();
-            _moveTargets = world.GetPool<MoveTarget>();
-            _reachTargetDistances = world.GetPool<ReachTargetDistance>();
-        }
-
-        public void Run(IEcsSystems systems)
-        {
-            foreach (int entity in _filter)
+            foreach (Entity entity in _filter)
             {
-                ref Position positionHook = ref _positions.Get(entity);
-                ref MoveTarget target = ref _moveTargets.Get(entity);
-                ref ReachTargetDistance distance = ref _reachTargetDistances.Get(entity);
+                ref Position position = ref entity.GetComponent<Position>();
+                ref MoveTarget target = ref entity.GetComponent<MoveTarget>();
+                ref ReachTargetDistance distance = ref entity.GetComponent<ReachTargetDistance>();
 
-                if (Vector3.Distance(positionHook.Value, target.Position) <= distance.Value)
-                    _moveTargets.Del(entity);
+                if (Vector3.Distance(position.Value, target.Position) <= distance.Value)
+                    entity.RemoveComponent<MoveTarget>();
             }
         }
+
+        public void Dispose() {}
     }
 }
