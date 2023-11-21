@@ -19,6 +19,7 @@ namespace _EcsFsm.Systems.Movement
             _filter = World.Filter
                 .With<Position>()
                 .With<MoveTarget>()
+                .With<ReachTargetDistance>()
                 .Build();
 
         public override void OnUpdate(float deltaTime)
@@ -28,11 +29,14 @@ namespace _EcsFsm.Systems.Movement
                 ref Position position = ref entity.GetComponent<Position>();
                 ref MoveTarget target = ref entity.GetComponent<MoveTarget>();
                 ref Speed speed = ref entity.GetComponent<Speed>();
+                ref ReachTargetDistance distance = ref entity.GetComponent<ReachTargetDistance>();
                 
-                position.Value = MoveTowards(position.Value, target.Position, speed.Value * deltaTime);
+                if (Distance(position.Value, target.Position) > distance.Value)
+                    position.Value = MoveTowards(
+                        position.Value, 
+                        target.Position, 
+                        speed.Value * deltaTime);
             }
         }
-
-        public void Dispose() {}
     }
 }
