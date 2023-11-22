@@ -10,8 +10,8 @@ namespace _EcsFsm.Systems.AI
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(AddChaseMoveTargetSystem))]
-    public sealed class AddChaseMoveTargetSystem : UpdateSystem 
+    [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(AddChaseMoveTarget))]
+    public sealed class AddChaseMoveTarget : UpdateSystem 
     {
         private Filter _characters;
     

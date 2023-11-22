@@ -165,6 +165,10 @@ MonoBehaviour:
     system: {fileID: 11400000, guid: 145db5d1716302348abb721877aaed82, type: 2}
   - enabled: 1
     system: {fileID: 11400000, guid: 392fa724733f5dc4098fe4cf392c0fbe, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: b72f00f485b16e840a2921708ca33537, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: 20011e9f04df13e47a5f2c38b6c38cbe, type: 2}
   fixedUpdateSystems: []
   lateUpdateSystems: []
   cleanupSystems: []
@@ -393,6 +397,10 @@ PrefabInstance:
       propertyPath: serializedData.Index
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6374555926038394670, guid: 4e08591fc1fb82c48b454e70eb998021, type: 3}
+      propertyPath: serializedData.Range
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6964026559577012351, guid: 4e08591fc1fb82c48b454e70eb998021, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -574,6 +582,10 @@ PrefabInstance:
     - target: {fileID: 4009566238890401704, guid: 4e08591fc1fb82c48b454e70eb998021, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374555926038394670, guid: 4e08591fc1fb82c48b454e70eb998021, type: 3}
+      propertyPath: serializedData.Range
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6964026559577012351, guid: 4e08591fc1fb82c48b454e70eb998021, type: 3}
       propertyPath: m_LocalPosition.x
