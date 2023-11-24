@@ -10,7 +10,10 @@ namespace _EcsFsm.Providers
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     public sealed class PositionProvider : MonoProvider<Position> 
     {
-        private void Update() => 
-            transform.position = Entity.GetComponent<Position>().Value;
+        private void Update()
+        {
+            if (!Entity.IsDisposed())
+                transform.position = Entity.GetComponent<Position>().Value;
+        }
     }
 }

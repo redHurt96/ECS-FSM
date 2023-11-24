@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0ee619a1e945f4a80009c40c1b4529, type: 3}
-  m_Name: Add Move Target System
+  m_Script: {fileID: 11500000, guid: b925f30462524c418ed1ce810cfa9657, type: 3}
+  m_Name: Decrease Cooldown
   m_EditorClassIdentifier: 
