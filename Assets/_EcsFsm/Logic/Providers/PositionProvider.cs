@@ -12,7 +12,7 @@ namespace _EcsFsm.Providers
     {
         private void Update()
         {
-            if (!Entity.IsDisposed())
+            if (Entity != null && !Entity.IsDisposed())
                 transform.position = Entity.GetComponent<Position>().Value;
         }
     }
