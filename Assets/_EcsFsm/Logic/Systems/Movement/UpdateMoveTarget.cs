@@ -28,7 +28,8 @@ namespace _EcsFsm.Systems.Movement
                 ref MoveTarget moveTarget = ref entity.GetComponent<MoveTarget>();
                 EntityId enemyId = entity.GetComponent<EnemyReference>().EntityId;
 
-                World.TryGetEntity(enemyId, out Entity enemy);
+                if (!World.TryGetEntity(enemyId, out Entity enemy))
+                    continue;
 
                 moveTarget.Position = enemy.GetComponent<Position>().Value;
             }
